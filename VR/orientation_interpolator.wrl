@@ -1,0 +1,60 @@
+#VRML V2.0 utf8
+
+Group {
+	children [
+		DEF	column1 Transform {
+			rotation 0 0 1 0
+			children 
+			DEF obj Shape {
+				appearance Appearance {
+					material Material {
+
+					}
+				}
+				geometry Cylinder {
+					radius 0.2
+					height 2
+				}
+			}
+			
+		}
+#		DEF	column2 Transform {
+#			rotation 0 0 1 1.57
+#			children USE obj
+#		}
+#		DEF	column3	Transform {
+#			rotation 1 0 0 1.57
+#			children USE obj
+#		}
+		DEF time TimeSensor	{
+			cycleInterval 2
+			loop TRUE
+		}
+		DEF	path1 OrientationInterpolator {
+			key	[0,0.5,1]
+			#keyValue [0 0 1 0,0 0 1 3.14,0 0 1 6.28]
+			#keyValue [1 0 0 0,1 0 0 3.14,1 0 0 6.28]
+			keyValue [0 1 0 0,0 1 0 3.14,0 1 0 6.28]
+		}
+#		DEF	path2 OrientationInterpolator {
+#			key	[0,0.5,1]
+##			keyValue [1 0 0 0,1 0 0 3.14,1 0 0 6.28]
+#			#keyValue [0 1 0 0,0 1 0 3.14,0 1 0 6.28]
+#			keyValue [0 0 1 0,0 0 1 3.14,0 0 1 6.28]
+#		}
+#		DEF	path3 OrientationInterpolator {
+#			key	[0,0.5,1]
+#			#keyValue [0 1 0 0,0 1 0 3.14,0 1 0 6.28]
+#			#keyValue [0 0 1 0,0 0 1 3.14,0 0 1 6.28]
+#			keyValue [1 0 0 0,1 0 0 3.14,1 0 0 6.28]
+#		}
+	]
+}
+ROUTE time.fraction_changed	TO path1.set_fraction
+ROUTE path1.value_changed TO column1.rotation
+
+#ROUTE time.fraction_changed	TO path2.set_fraction
+#ROUTE path2.value_changed TO column2.rotation
+
+#ROUTE time.fraction_changed	TO path3.set_fraction
+#ROUTE path3.value_changed TO column3.rotation	   

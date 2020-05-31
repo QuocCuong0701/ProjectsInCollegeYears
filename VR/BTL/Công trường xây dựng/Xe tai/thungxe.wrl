@@ -1,0 +1,98 @@
+#VRML V2.0 utf8
+
+#thungxe
+Transform {
+	
+	translation	3 3.2 0.5
+	children [
+		Shape {
+			geometry Box {
+				size 9.5 3.8 0.5
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .8 .51 .09
+
+					
+				}
+			}
+		}
+	]}
+
+	Transform {
+	
+	translation	3 3.2 5.5
+	children [
+		Shape {
+			geometry Box {
+				size 9.5 3.8 0.5
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .8 .51 .09
+
+					
+				}
+			}
+		}
+	]}
+
+	DEF chan Transform {
+	
+	translation	-1.5 3.2 3
+	children [
+		Shape {
+			geometry Box {
+				size 0.5 3.8 5
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .8 .51 .09
+
+					
+				}
+			}
+		}
+	]}
+
+DEF	timer TimeSensor {
+	cycleInterval 10
+	loop TRUE
+	enabled TRUE
+}
+DEF xoay  OrientationInterpolator {
+	key [0 0.4 0.5 0.6 1]
+	keyValue [ 0 0 1 0,0 0 1 0,0 0 1 -1.75,0 0 1 0 ]
+}
+ROUTE timer.fraction_changed TO xoay.set_fraction	
+ROUTE xoay.value_changed TO chan.set_rotation
+
+	Transform {
+	
+	translation	3 1.5 3
+	children [
+		Shape {
+			geometry Box {
+				size 9.5 0.5 5
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .8 .51 .09
+
+					
+				}
+			}
+		}
+	]}
+
+	DEF dongcat Transform {
+		scale 0.3 0.8 0.17  
+		translation	-1.7 1.6 1
+		children Inline	{url "dongcat.wrl"}
+	}
+	DEF co  PositionInterpolator {
+	key [0 0.4 0.5 0.6 1]
+	keyValue [ 0.3 0.8 0.17, 0.3 0.8 0.17, 0.3 0 0.17 ]
+}
+ROUTE timer.fraction_changed TO co.set_fraction	
+ROUTE co.value_changed TO dongcat.set_scale

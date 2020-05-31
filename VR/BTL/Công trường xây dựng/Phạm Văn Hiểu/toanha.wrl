@@ -1,0 +1,204 @@
+#VRML V2.0 utf8
+
+DEF	day Transform {
+	children [
+	DEF	tru Transform {
+			children [
+				Shape {
+					appearance Appearance {
+						texture	ImageTexture {url "tuong.jpg"}
+					}
+					geometry Box {size 1 30 1}
+				}
+			Transform {
+				translation	0.3 14 0.3
+				children [ Shape {appearance Appearance {
+								texture ImageTexture {url "thep.JPG"}}
+								geometry Cylinder {
+									radius 0.1
+									height 7.5
+								}
+			}]
+				}
+				Transform {
+					translation	-0.3 14 0.3
+					children [Shape {appearance Appearance {
+								texture ImageTexture {url "thep.JPG"}}
+								geometry Cylinder {
+									radius 0.1
+									height 7.5
+								}
+			}]
+				}
+				Transform {
+					translation	0.3 14 -0.3
+					children [Shape {appearance Appearance {
+								texture ImageTexture {url "thep.JPG"}}
+								geometry Cylinder {
+									radius 0.1
+									height 7.5
+								}
+			}]
+				}
+				Transform {
+					translation	-0.3 14 -0.3
+					children [Shape {appearance Appearance {
+								texture ImageTexture {url "thep.JPG"}}
+								geometry Cylinder {
+									radius 0.1
+									height 7.5
+								}
+			}]
+				}
+			]
+		}
+		Transform {
+			translation	10 0 0
+			children [USE tru ]
+		}
+		Transform {
+			translation	10 0 10
+			children [USE tru ]
+		}
+		Transform {
+			translation	0 0 10 
+			children [USE tru ]
+		}
+		DEF	tang Transform {
+			translation	5 0 5
+			children [
+			
+				Shape {appearance Appearance {
+				texture ImageTexture {url "tuong.jpg"}}
+					geometry Box {size 12 1 12}
+				}
+			]
+		}
+
+		Transform {
+			translation	0 -15 0
+			children [USE tang ]
+		}
+		Transform {
+			translation	0 -10 0
+			children [USE tang ]
+		}
+		Transform {
+			translation	0 -5 0
+			children [USE tang ]
+		}
+		Transform {
+			translation	0 5 0
+			children [USE tang ]
+		}
+		Transform {
+			translation	0 10 0
+			children [USE tang ]
+		}
+
+		
+	]
+}
+Transform {
+	translation	-10 0 0
+	children [USE day ]
+	
+}
+Transform {
+	translation	10 0 0
+	children [USE day ]
+}
+Transform {
+	translation	-10 0 10
+	children [USE day ]
+}
+Transform {
+	translation	10 0 10
+	children [USE day ]
+}
+Transform {
+	translation	-10 0 -10
+	children [USE day ]
+}
+Transform {
+	translation	10 0 -10
+	children [USE day ]
+}
+Transform {
+	translation	0 0 -10
+	children [USE day ]
+}
+
+Transform {
+	translation	0 0 -20
+	children [USE day ]
+}
+
+
+
+#----------thangbo
+
+
+Transform {			
+	children DEF thangbo Inline{url "thangbo.wrl"}  
+}
+Transform {
+	translation	0 10 0
+	children USE thangbo
+}
+Transform {
+	translation	0 20 0
+	children USE thangbo
+}
+
+Transform {
+	rotation 0 0 1 -1
+	translation	12.8 3.5 -5
+	children USE thangbo
+}
+Transform {
+	rotation 0 0 1 -1
+	translation	12.8 13.5 -5
+	children USE thangbo
+}
+
+
+
+
+
+
+
+# -----thangmay
+Transform {
+	children[
+		Inline	{url "thangmay.wrl"}
+
+
+	] 
+
+
+}
+
+#--tang1
+
+
+Transform {
+	children Inline	{url "tang1.wrl"}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

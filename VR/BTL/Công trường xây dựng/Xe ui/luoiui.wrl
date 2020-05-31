@@ -1,0 +1,140 @@
+#VRML V2.0 utf8
+
+DEF luoi Transform {
+	translation	-6.8 -0.5 0
+	rotation 0 0 1 1.57
+	children [
+		Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+			geometry Extrusion {
+				crossSection [1 0,0.95 0.4, 0.9 0.5,0.85 0.6, 0.8 0.7, 0.7 0.8, 0.6 0.85, 0.5 0.9,0.4 0.95,
+							0 1, -0.4 0.95,-0.5 0.9,-0.6 0.85,-0.7 0.8,-0.8 0.7,-0.9 0.5, -0.95 0.4,-1 0,
+							-0.9 0.1, -0.8 0.3,-0.6 0.4,-0.5 0.5,-0.2 0.6, 0 0.7,0.2 0.6,0.5 0.5,0.6 0.4,0.8 0.3, 0.9 0.1, 1 0]
+							spine [0 0 -3,0 0 3]
+							scale [1 1,1 1]
+							solid FALSE
+			}
+		}
+	]
+}
+DEF thanh1 Transform {
+	translation	-4 0 -1.5
+	rotation 0 0 1 1.9
+	children [
+		Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+			geometry Cylinder {radius 0.2
+								height 4}
+		}
+	]
+ }
+DEF thanh2 Transform {
+	translation	-4 0 1.5
+	rotation 0 0 1 1.9
+	children [
+		Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+			geometry Cylinder {radius 0.2
+								height 4}
+		}
+	]
+}
+DEF	click TouchSensor {
+	enabled	TRUE
+}
+DEF	time TimeSensor {
+	cycleInterval 5
+	loop FALSE
+	enabled FALSE
+}
+DEF	time1 TimeSensor {
+	cycleInterval 5
+	loop FALSE
+	enabled FALSE
+}
+DEF	thanh11 OrientationInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 1 1.9,0 0 1 2.09,0 0 1 2.2]
+			}
+DEF	thanh12 OrientationInterpolator {
+				key [0 0.5 1]
+				keyValue [ 0 0 1 2.2,0 0 1 2.09,0 0 1 1.9]
+			}
+DEF	thanh21 OrientationInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 1 1.9,0 0 1 2.09,0 0 1 2.2]
+			}
+DEF	thanh22 OrientationInterpolator {
+				key [0 0.5 1]
+				keyValue [ 0 0 1 2.2,0 0 1 2.09,0 0 1 1.9]
+			}
+DEF	luoix PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [-6.8 -0.5 0,-6.6 -0.7 0,-6.4 -0.9 0]
+			}
+DEF	luoil PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [ -6.4 -0.9 0,-6.6 -0.7 0,-6.8 -0.5 0]
+			}
+DEF ma Script {
+
+		eventIn SFBool turnOn
+
+		eventOut SFBool On
+
+		eventOut SFBool Off
+
+		field SFBool turn FALSE
+
+		url "javascript:
+
+		function turnOn(val){
+
+		if(val){
+
+		turn = !turn;
+
+		if(turn)
+
+				{
+
+					On= TRUE;
+
+                     Off=FALSE;
+
+            		}
+
+        		else
+
+        		{
+
+                    On=FALSE;
+
+					Off=TRUE;
+
+        		}
+
+            		}
+
+    		}
+
+    		"
+
+}
+
+
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.On	TO time.enabled
+ROUTE ma.Off TO time1.enabled
+ROUTE click.touchTime TO time.startTime
+ROUTE click.touchTime TO time1.startTime
+ROUTE time.fraction_changed TO	thanh11.set_fraction
+ROUTE time1.fraction_changed TO thanh12.set_fraction
+ROUTE thanh11.value_changed TO thanh1.rotation
+ROUTE thanh12.value_changed TO thanh1.rotation
+ROUTE time.fraction_changed TO	thanh21.set_fraction
+ROUTE time1.fraction_changed TO thanh22.set_fraction
+ROUTE thanh21.value_changed TO thanh2.rotation
+ROUTE thanh22.value_changed TO thanh2.rotation
+ROUTE time.fraction_changed TO	luoix.set_fraction
+ROUTE time1.fraction_changed TO luoil.set_fraction
+ROUTE luoix.value_changed	TO luoi.translation
+ROUTE luoil.value_changed	TO luoi.translation

@@ -1,0 +1,67 @@
+#VRML V2.0 utf8
+
+DEF	coll Collision {
+	children [
+		DEF	nen_kho Transform {
+			children [ 
+				Shape {appearance DEF app Appearance {
+					texture	ImageTexture {url ["../be_tong.jpg"]}
+					}
+					geometry Box {size 6.3 0.2 4.4}
+				}
+			]
+		}
+		DEF	day_bxm Transform {
+			children [
+				DEF	chong_bxm Transform	{
+					children [
+						DEF	bao_xm Transform { translation -2.5 0.33 -1.05
+							rotation 0 1 0 1.57
+							children [
+								Inline {url	["bao_xi_mang.wrl"]	}]}
+						Transform {translation 0 0.45 0	children [USE bao_xm ]}
+						Transform {translation 0 0.9 0	children [USE bao_xm ]}
+						Transform {translation 0 1.35 0	children [USE bao_xm ]}
+						Transform {translation 0 1.75 0	children [USE bao_xm ]}
+						Transform {translation 0 2.15 0	children [USE bao_xm ]}
+					]
+				}
+				Transform {translation 1 0 0 children [USE chong_bxm ]}
+				Transform {translation 2 0 0 children [USE chong_bxm ]}
+				Transform {translation 3 0 0 children [USE chong_bxm ]}
+				Transform {translation 4 0 0 children [USE chong_bxm ]}
+				Transform {translation 5 0 0 children [USE chong_bxm ]}
+			]
+		}
+		Transform {translation 0 0 2.1
+			children [USE day_bxm ]
+		}
+		DEF	thanh_do Transform {translation	-3.1 1.35 -2.1
+			children [
+				Shape {appearance Appearance {
+					texture	ImageTexture {url ["../thanh_sat.jpg"]}
+				}
+					geometry Cylinder {height 3.2 radius 0.04	}}]
+		}
+		Transform {translation 6.2 0 0
+			children [USE thanh_do ]
+		}
+		DEF thanh_do_1 Transform {translation 0 0.04 4.1
+			scale 1 1.15 1
+			children [USE thanh_do ]
+		}
+		Transform {translation 6.2 0 0
+			children [USE thanh_do_1 ]
+		}
+		DEF	mai_che Transform {translation 0 3.15 0
+			rotation 1 0 0 -0.12
+			children [
+				Shape {appearance Appearance {texture ImageTexture {url ["../phòng bảo vệ/tuong.jpg"]}}
+					geometry Box {size 6.5 0.01 4.6}
+			}
+			]
+		}
+	] 
+	bboxSize 6.3 3.5 4.4
+	collide	TRUE
+}

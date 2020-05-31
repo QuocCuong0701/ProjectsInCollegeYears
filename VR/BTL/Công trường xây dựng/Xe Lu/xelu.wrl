@@ -1,0 +1,64 @@
+#VRML V2.0 utf8
+
+DEF	xelu Transform {
+	children [
+		Transform {
+			children [
+				Transform {
+					children [
+						Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+							geometry Box {size 9 3 6}
+						}]
+				}
+				Transform {
+					translation 2.5 3.5 0
+					rotation 0 1 0 1.57
+					children [Inline {url "hop.wrl"}]
+				}
+				Transform {
+					translation	-3.5 2 -1.5
+					children [
+						Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+							geometry Cylinder {radius 0.2
+								height 4}
+						}
+					]
+				}
+				Transform {
+					translation	-3.5 4 -1.5
+					children [
+						Shape {appearance Appearance {material Material {diffuseColor 0 0 0}}
+							geometry Cylinder {radius 0.3
+								height 1}
+						}
+					]}
+			]
+		}
+		Transform {
+			translation	-3.5 -0.5 0
+			rotation 1 0 0 1.57
+			scale 1 1 1
+			children [Inline {url "banhxelu.wrl"}]
+		}
+	]
+}
+
+DEF tgdcqd TimeSensor {
+	cycleInterval 14
+	loop TRUE
+}
+#quãng đường người di chuyển 
+DEF qddc PositionInterpolator {
+	key [0 0.5  1]
+	keyValue [30 0 0, 0 0 0, 30 0 0]
+}
+ROUTE tgdcqd.fraction_changed TO qddc.set_fraction	
+ROUTE qddc.value_changed TO xelu.set_translation 
+
+#góc quay của người
+DEF xoaynguoi  OrientationInterpolator {
+	key [0 0.1 0.2 0.3 0.4 0.5 0.53 0.6 0.7 0.8 0.9,0.99 1]
+	keyValue [ 0 1 0 0, 0 1 0 0 , 0 1 0 0,0 1 0 0, 0 1 0 0 , 0 1 0 0, 0 1 0 3.14, 0 1 0 3.14,0 1 0 3.14, 0 1 0 3.14 ,0 1 0 3.14 , 0 1 0 3.14, 0 1 0 3.14]
+}
+ROUTE tgdcqd.fraction_changed TO xoaynguoi.set_fraction
+ROUTE xoaynguoi.value_changed TO xelu.set_rotation

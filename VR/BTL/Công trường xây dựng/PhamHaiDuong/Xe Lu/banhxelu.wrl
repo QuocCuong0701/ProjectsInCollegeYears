@@ -1,0 +1,54 @@
+#VRML V2.0 utf8
+
+DEF banh1 Transform {
+			translation	0 0 0.5
+			children [ Shape {appearance Appearance {material Material {}
+				texture ImageTexture {url "betong.jpg"}}
+					geometry Cylinder {radius 2 
+										height 7}
+				}]
+		}
+DEF banh2 Transform {
+			translation	8 2 0
+			children [ Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "betong.jpg"}}
+					geometry Cylinder {radius 2.5 
+										height 1}
+				}]
+		}
+DEF banh3 Transform {
+			translation	8 0 0
+			children [ Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "betong.jpg"}}
+					geometry Cylinder {radius 2.5 
+										height 1}
+				}]
+		}
+DEF banh4 Transform {
+			translation	8 -2 0
+			children [ Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "betong.jpg"}}
+					geometry Cylinder {radius 2.5 
+										height 1}
+				}]
+			}
+
+			DEF	 click TouchSensor{enabled TRUE	}
+			DEF	 clock TimeSensor {
+				cycleInterval 2
+				loop TRUE
+				enabled	TRUE
+			}
+			DEF	quay OrientationInterpolator {
+				key[0.0,0.5,1.0]
+				keyValue[0 1 0 0,0 1 0 3.14,0 1 0 6.28]
+			}
+ROUTE click.isActive TO	clock.enabled
+ROUTE clock.fraction_changed TO	quay.set_fraction
+ROUTE quay.value_changed TO	banh1.rotation
+ROUTE quay.value_changed TO	banh2.rotation
+ROUTE quay.value_changed TO	banh3.rotation
+ROUTE quay.value_changed TO	banh4.rotation
+
+
+

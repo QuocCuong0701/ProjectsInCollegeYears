@@ -1,0 +1,190 @@
+#VRML V2.0 utf8
+
+Collision {
+	children [
+		DEF	thanhsat Transform { #rotation 0 0 1 1.57
+			rotation 1 0 0 1.57
+			children [
+				Shape {
+					appearance Appearance {
+						material Material { diffuseColor 0.7 0.7 0.7 }
+						texture	ImageTexture {url	["sat.jpg"]}}
+					geometry Cylinder {
+						radius 0.03 height	8}
+				}]}
+		DEF	hangsat1 Transform {
+			children [	
+				Transform {	 translation 0.06 0 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.12 0 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.18 0 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.24 0 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.3 0 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.36 0 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.42 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.06 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.12 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.18 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.24 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.3 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.36 0 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.42 0 0
+					children [USE thanhsat]}
+			]
+		}
+		DEF	hangsat2 Transform {
+			children [
+				Transform {	 translation 0.03 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.09 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.15 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.21 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.27 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.33 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.39 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.03 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.09 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.15 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.21 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.27 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.33 0.06 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.39 0.06 0
+					children [USE thanhsat]}
+			]
+		}
+		DEF hangsat3 Transform {
+			children [
+				Transform {	 translation 0 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.06 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.12 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.18 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.24 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.3 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.36 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.06 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.12 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.18 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.24 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.3 0.12 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.36 0.12 0
+					children [USE thanhsat]}
+			]
+		}
+		DEF	hangsat4 Transform {
+			children [
+				Transform {	 translation 0.03 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.09 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.15 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.21 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.27 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.33 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.03 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.09 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.15 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.21 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.27 0.18 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.33 0.18 0
+					children [USE thanhsat]}
+			]
+		}
+		DEF	hangsat5 Transform {
+			children [
+				Transform {	 translation 0 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.06 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.12 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.18 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.24 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.3 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.06 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.12 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.18 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.24 0.24 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.3 0.24 0
+					children [USE thanhsat]}
+			]
+		}
+		DEF	hangsat6 Transform {
+			children [
+				Transform {	 translation 0.03 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.09 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.15 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.21 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation 0.27 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.03 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.09 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.15 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.21 0.3 0
+					children [USE thanhsat]}
+				Transform {	 translation -0.27 0.3 0
+					children [USE thanhsat]}
+			]
+		}
+	]
+	bboxSize 1 0.33 8
+	collide	TRUE
+}

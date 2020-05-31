@@ -1,0 +1,120 @@
+#VRML V2.0 utf8
+
+Transform {
+	translation	0 0 0
+	children [Inline {url ["thanh.wrl"]}
+]
+}
+Transform {
+	translation	0 4 0
+	children [Inline {url ["thanh.wrl"]}
+]
+}
+Transform {
+	translation	0 8 0
+	children [Inline {url ["thanh.wrl"]}
+]
+}
+Transform {
+	translation	0 12 0
+	children [Inline {url ["thanh.wrl"]}
+]
+}
+Transform {
+	translation	0 16 0
+	children [Inline {url ["thanh.wrl"]}
+]
+}
+Transform {
+	translation	0 20 0
+	children [Inline {url ["thanh.wrl"]}
+]
+}
+DEF manh Transform{
+	translation	2 0 0.1
+	children [Shape {appearance Appearance {material Material {}}
+	geometry Box {size 4 4 0.1}
+}
+]
+}
+DEF thangmay Transform {	 children [
+		Transform {
+		translation 0 0 0
+		rotation 0 1 0 -1.57
+		children [USE manh ]}
+		Transform {
+		translation 4 0 0
+		rotation 0 1 0 -1.57
+		children [USE manh ]}
+		Transform {
+		translation -0.1 -2 2
+		rotation 1 0 0 -1.57
+		children [USE manh ]}
+		Transform {
+		translation -0.1 1.8 2
+		rotation 1 0 0 -1.57
+		children [USE manh ]}
+		DEF cua Transform {
+		translation -2 2 3.9
+		scale 1 1 1
+		rotation 0 0 1 -1.57
+		children [USE manh	]}
+	]
+}
+			DEF click TouchSensor {enabled TRUE }
+			DEF	timer TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled TRUE
+		}
+		DEF	timer1 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		}
+			DEF	dongmo PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 0, 0 10 0, 0 20 0]
+			}
+			DEF	dongmo1 PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [ 0 20 0, 0 10 0, 0 0 0]
+			}
+			DEF	ma Script {
+			eventIn  SFBool turnOn
+			eventOut SFBool on
+			eventOut SFBool	off
+			field SFBool turn FALSE
+			url	"Javascript:
+			function turnOn(val){
+				if(val){
+					turn =! turn;
+					if(turn){
+						on=TRUE
+						off=FALSE
+					}
+						else{
+							on=FALSE
+							off=TRUE
+					}
+				}
+			}
+			"
+			}
+		DEF	click1 PlaneSensor {
+		enabled TRUE 
+		maxPosition 0 0
+		minPosition 0 20
+		autoOffset TRUE
+		}
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.on	TO timer.enabled
+ROUTE ma.off TO timer1.enabled
+ROUTE click.touchTime TO timer.startTime
+ROUTE click.touchTime TO timer1.startTime
+ROUTE timer.fraction_changed TO	dongmo.set_fraction
+ROUTE timer1.fraction_changed TO dongmo1.set_fraction
+ROUTE dongmo.value_changed TO thangmay.translation
+ROUTE dongmo1.value_changed TO thangmay.translation							  
+ROUTE click1.translation_changed TO	cua.translation

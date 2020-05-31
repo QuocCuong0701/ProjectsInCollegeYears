@@ -1,0 +1,108 @@
+#VRML V2.0 utf8
+
+DEF	xeui Transform {
+	children [
+		Transform {
+			children [
+				Transform {
+					children [
+						Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+							geometry Box {size 8 3 6}
+						}]
+				}
+				Transform {
+					translation	-2.2 -1.5 3.5
+					rotation 1 0 0 1.57
+					scale 0.7 1 0.7
+					children [ Inline {url "banhxich.wrl"}]
+				}
+				Transform {
+					translation	-2.2 -1.5 -3.5
+					rotation 1 0 0 1.57
+					scale 0.7 1 0.7
+					children [Inline {url "banhxich.wrl"}]
+				}
+				Transform {
+					translation 2 3.5 0
+					rotation 0 1 0 1.57
+					children [Inline {url "hop.wrl"}]
+				}
+				Transform {
+					translation	3.5 2 -1.5
+					children [
+						Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+							geometry Cylinder {radius 0.2
+								height 4}
+						}
+					]
+				}
+				Transform {
+					translation	3.5 4 -1.5
+					children [
+						Shape {appearance Appearance {material Material {diffuseColor 0 0 0}}
+							geometry Cylinder {radius 0.3
+								height 1}
+						}
+					]}
+			]
+		}
+		Transform {
+			translation	-1 0 0
+			children [Inline {url "luoiui.wrl"}]
+		} 
+	]
+}
+
+DEF	donggach Transform {
+	translation	22 -2.9 0
+	children [ DEF g Inline {url ["../gạch/it-gach.wrl"]}
+		Transform { translation	0 0 2
+			children [USE g]
+		}
+		Transform { translation 0 0 -2
+			children [USE g]
+		}
+		Transform { translation	0 1 1
+			children [USE g]
+		}
+		Transform { translation	0 1 -1
+			children [USE g]
+		}
+		Transform { translation	0 2 0 
+			children [USE g]
+		}
+	]
+}
+
+DEF tgdcqd TimeSensor {
+	cycleInterval 20
+	loop TRUE
+}
+DEF tggdc TimeSensor {
+	cycleInterval 20
+	loop TRUE
+}
+#quãng đường người di chuyển 
+DEF qddc PositionInterpolator {
+	key [0 0.5  1]
+	keyValue [40 0 0, 0 0 0, 40 0 0]
+}
+#quãng đường gạch di chuyển 
+DEF qdgdc PositionInterpolator {
+	key [0 0.1 0.2 0.3 0.4 0.5 0.6 1]
+	keyValue [22 -2.9 0,22 -2.9 0,14.6 -2.9 0, 7.2 -2.9 0,-1 -2.9 0,-9.5 -2.9 0,-10 -2.9 0
+		-10 -2.9 0]
+}
+ROUTE tgdcqd.fraction_changed TO qddc.set_fraction	
+ROUTE qddc.value_changed TO xeui.set_translation
+
+ROUTE tggdc.fraction_changed TO qdgdc.set_fraction	
+ROUTE qdgdc.value_changed TO donggach.set_translation
+
+#góc quay của người
+DEF xoaynguoi  OrientationInterpolator {
+	key [0 0.1 0.2 0.3 0.4 0.5 0.53 0.6 0.7 0.8 0.9,0.98 1]
+	keyValue [ 0 1 0 0, 0 1 0 0 , 0 1 0 0,0 1 0 0, 0 1 0 0 , 0 1 0 0, 0 1 0 3.14, 0 1 0 3.14,0 1 0 3.14, 0 1 0 3.14 ,0 1 0 3.14 , 0 1 0 3.14, 0 1 0 3.14]
+}
+ROUTE tgdcqd.fraction_changed TO xoaynguoi.set_fraction
+ROUTE xoaynguoi.value_changed TO xeui.set_rotation

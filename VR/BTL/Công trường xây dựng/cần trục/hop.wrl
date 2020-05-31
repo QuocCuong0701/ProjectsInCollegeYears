@@ -1,0 +1,51 @@
+#VRML V2.0 utf8
+
+Transform {
+	children [
+		Transform {
+			children [Inline {url "cua.wrl"}]
+		}
+		Transform {
+		translation -2 0 -2
+		rotation 0 1 0 -1.57
+		children [Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "../tamthep.jpg"}}
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 2 0 -2
+		rotation 0 1 0 -1.57
+		children [Shape {appearance Appearance {material Material {}
+		texture ImageTexture {url "../tamthep.jpg"}}
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 0 -2 -2
+		rotation 1 0 0 -1.57
+		children [Shape {appearance Appearance {material Material {}
+		texture ImageTexture {url "../tamthep.jpg"}}
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 0 2 -2
+		rotation 1 0 0 -1.57
+		children [Shape {appearance Appearance {material Material {}
+		texture ImageTexture {url "../tamthep.jpg"}}
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 0 0 -4
+		scale 1 1 1
+		rotation 0 0 1 -1.57
+		children [Shape {appearance Appearance {material Material {diffuseColor 0.5 0.7 0.8 transparency 0.3}
+		}
+			geometry Box {size 4 4 0.1}
+				}]}
+		Transform{
+			translation	0 0.8 -2
+			scale 1.8 1.8 1.8
+			rotation 0 1 0 3.14
+			children [Inline {url "../người/Nguoi.wrl"}]
+				} 
+	]
+}

@@ -1,0 +1,109 @@
+#VRML V2.0 utf8
+
+Group {
+	children [
+		DEF	ceiling Transform {
+			children [ Inline {
+			url	["vaulted.wrl"]
+		}
+			]
+		}
+		 
+		DEF pyramid Transform {
+			translation	0 0 0
+			children [
+				Shape {
+					appearance DEF app Appearance {
+						material Material {}
+					}
+					geometry IndexedFaceSet	{
+						coord Coordinate {
+							point [
+								-0.2 0 0.2,
+								0.2 0 0.2,
+								0.2 0 -0.2,
+								-0.2 0 -0.2,
+								0 1 0
+							]
+						}
+						coordIndex [0 1 2 3 -1,#bottom
+							0 1 4 -1,#front
+							1 2 4 -1,#right
+							2 3 4 -1,#back
+							3 0 4 #left
+
+						]
+						solid FALSE	
+					}
+				}
+			]
+		}
+		DEF	pedestal Transform {
+			children [
+				   Shape {
+					   appearance USE app
+					   geometry	Box{size 0.5 0.1 0.5}
+				   }
+			]
+		}
+		DEF	time TimeSensor	{
+			cycleInterval 6
+			loop TRUE
+		}
+		DEF	time1 TimeSensor	{
+			cycleInterval 1
+			loop TRUE
+		}
+		DEF	path OrientationInterpolator {
+			key	[0 0.5 1]
+			keyValue [0 1 0 0, 0 1 0 3.14,0 1 0 6.28]
+		}
+		DEF	path1 OrientationInterpolator {
+			key	[0 0.5 1]
+			keyValue [0 1 0 0, 0 1 0 -3.14,0 1 0 -6.28]
+		}
+		DEF	ball Transform {
+			translation	0 1.4 0
+			children [
+				PointLight {
+				   radius 15	  
+				   location	0 -.1 0
+				   color 1 0 0
+				   intensity .8
+				   ambientIntensity	0.9
+				}
+				Shape {
+					appearance Appearance {
+						texture	ImageTexture {
+							url	["4.jpg"]
+						}
+					}
+					geometry Sphere{radius .25}
+				}
+			]
+		}
+		DEF	floor Transform	{
+			translation	0 -.1 0
+			children [
+				Shape {
+					appearance USE app
+					geometry IndexedFaceSet	{
+						coord Coordinate {
+							point [-7 0 7, 7 0 7, 7 0 -7, -7 0 -7]
+						}
+						coordIndex [0 1 2 3]
+						solid FALSE
+					}
+				}
+			]
+		}
+	]
+}
+
+ROUTE time1.fraction_changed	TO path1.set_fraction
+ROUTE path1.value_changed TO	ball.rotation
+ROUTE time.fraction_changed	TO path.set_fraction
+ROUTE path.value_changed TO	pyramid.rotation
+ROUTE path.value_changed TO	ceiling.rotation
+ROUTE path.value_changed TO	floor.rotation
+ROUTE path.value_changed TO	pedestal.rotation

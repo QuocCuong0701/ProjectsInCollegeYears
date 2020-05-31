@@ -1,0 +1,39 @@
+#VRML V2.0 utf8
+#VRML V2.0 utf8
+
+DEF	xelu Transform { 
+	translation	0 0 -12
+	rotation 0 1 0 -1.57
+	children [Inline {url "xelu.wrl"}]
+}
+DEF	dongcat Transform {
+	translation	 15 -2.5 -15
+	rotation 0 1 0 -1.57
+	center -15 0 0
+	children Shape {
+		appearance  Appearance {
+			texture ImageTexture {url "cat.jpg"}
+		}
+		geometry Box {size 32 1 5}
+	}
+}
+
+
+DEF	timer2 TimeSensor {
+	cycleInterval 14
+	loop TRUE
+	enabled TRUE
+	
+}
+
+DEF	catlun PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [1 1 1,0 1 1,0 1 1]
+				
+			}
+
+
+ROUTE timer2.fraction_changed TO catlun.set_fraction
+
+ROUTE catlun.value_changed TO dongcat.set_scale
+

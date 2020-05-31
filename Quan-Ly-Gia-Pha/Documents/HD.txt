@@ -1,0 +1,6 @@
+-Biểu đồ ca sử dụng chính
+	-Bắt đầu từ user
+	-St thừ kế user -> đưa ra đề xuất
+	-Admin thừa kế user->manage st
+-Mô tả UCs
+-Đặc tả UCs

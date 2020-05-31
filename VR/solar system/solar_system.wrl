@@ -1,0 +1,195 @@
+#VRML V2.0 utf8
+
+Background {
+#	groundAngle	[1.2 1.57] #[0,PI]
+#	groundColor	[0 0 0] #[0,1]
+	backUrl	["stars.png"]
+	bottomUrl ["stars.png"]
+	frontUrl ["stars.png"]
+	leftUrl	["stars.png"]
+	rightUrl ["stars.png"]
+	topUrl ["stars.png"]
+#	skyAngle [1.2 1.57]
+#	skyColor [0 0 1, 0 0 0.9, 1 0 0]
+}
+
+#Sun
+Transform {
+	translation	0 0 0
+	children [
+		
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "sun1.jpg"}
+		
+			}
+			geometry Sphere	{ radius 10 }
+		}
+	]
+}
+
+#Mercury
+Transform {
+	translation	13.2 0 0
+	rotation 0 0 1 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "mercury.png" repeatS TRUE repeatT TRUE}
+			}
+			geometry Sphere	{radius 0.383}
+		}
+	]
+}
+
+#Venus
+Transform {
+	translation	15.7 0 0
+	rotation 0 0 1 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "venus.jpg"}
+			}
+			geometry Sphere	{radius 0.949}
+		}
+	]
+}
+
+#Earth
+Transform {
+	translation	19.85 0 0
+	rotation 0 0 1 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "earth.jpg"}
+			}
+			geometry Sphere	{radius 1}
+		}
+	]
+}
+
+#Moon
+Transform {
+	translation	21.45 0 0
+	rotation 0 0 1 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "moon.jpg"}
+			}
+			geometry Sphere	{radius 0.2724}
+		}
+	]
+}
+
+#Mars
+Transform {
+	translation	22.95 0 0
+	rotation 0 0 1 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "mar.png"}
+			}
+			geometry Sphere	{radius 0.532}
+		}
+	]
+}
+
+#Jupiter
+Transform {
+	translation	27 0 0
+	rotation 0 0 1 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "jupiter.png"}
+			}
+			geometry Sphere	{radius 2.55}
+		}
+	]
+}
+
+#Saturn
+#Group {
+#	children [
+#	DEF	cs SphereSensor {
+#			autoOffset TRUE
+#			offset 0 1 0 0
+#			enabled	TRUE
+#		}
+#	DEF	tr Transform {
+#			translation	33 0 0
+#			rotation 2 2 1 2
+#			scaleOrientation 0 0 4 0
+#			children [
+#				Shape {
+#					appearance Appearance {
+#						texture	ImageTexture {url "saturn.jpg"}
+#					}
+#					geometry Sphere	{radius 1.7}
+#				}
+#			]
+#		}
+#	]
+#    ROUTE	 cs.rotation_changed TO	tr.rotation
+#} 
+
+Group {
+	children [
+	DEF	timer TimeSensor {
+			loop TRUE
+			cycleInterval 6
+			startTime 0
+			stopTime 0
+		}
+	
+	DEF	sph Transform {
+			translation	33 0 0
+			rotation 0 0 1 0
+			children [
+				Shape {
+					appearance Appearance {
+						texture	ImageTexture {url "saturn.jpg"}
+					}
+					geometry Sphere	{radius 1.7}
+				}
+			]
+		}
+	DEF	oi OrientationInterpolator {
+				key	[0 0.33 0.66 1.0]
+				keyValue [.707 .707 0 0, .707 .707 0 2.0,
+						  .707 .707 0 4.0, .707 .707 0 6.2]
+		#		key	[0 0.1 0.2 0.3 1]
+		#		keyValue [0.1 0.1 0 0.4 0.1 0.1 0 2.4
+		#					0.1 0.1 0 4.4 0.1 0.1 0 6.4]
+			} 		
+	]			  
+	ROUTE timer.fraction_changed TO	oi.set_fraction
+	ROUTE oi.value_changed TO sph.rotation		 
+} 
+
+#Rings
+#Transform {
+#	translation	40 0 0
+#	rotation 0 0 1 0
+#	children [
+#		Shape {
+#			appearance Appearance {
+#				texture	ImageTexture {url "saturn.jpg"}
+#			}
+##			geometry Cylinder {
+##				bottom FALSE
+##				top	FALSE
+##				height 1
+##				radius 2
+##				side TRUE
+##			}	
+#			geometry Extrusion {
+				
+#			}
+#		}
+#	]
+#}

@@ -1,0 +1,189 @@
+#VRML V2.0 utf8
+
+Transform {
+	translation	0 0 0
+	children [Inline {url "tru.wrl"}]
+}
+Transform {
+	translation	0 39.8 0
+	children [
+		Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+			geometry Cylinder {radius 2
+				height 1
+				bottom TRUE 
+				top TRUE }
+		}]
+}
+DEF	trucquay Transform {
+	translation	0 17 0
+	children [
+		Transform {
+			translation	-0.5 23.8 0
+			rotation 1 0 0 1.57
+			children [Inline {url "truc.wrl"}]
+		}
+		Transform {
+			translation	0.7 22.8 0.7
+			children [Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Extrusion {
+						crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+						spine [0 0 0,0 4 0,-0.7 7 -0.7]
+						scale [0.12 0.12,0.12 0.12]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+				}]
+		}
+		Transform {
+			translation	-0.7 22.8 -0.7
+			children [Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Extrusion {
+						crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+						spine [0 0 0,0 4 0,0.7 7 0.7]
+						scale [0.12 0.12,0.12 0.12]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+				}]
+		}
+		Transform {
+			translation	-0.7 22.8 0.7
+			children [Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Extrusion {
+						crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+						spine [0 0 0,0 4 0,0.7 7 -0.7]
+						scale [0.12 0.12,0.12 0.12]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+				}]
+		}
+		Transform {
+			translation	0.7 22.8 -0.7
+			children [Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Extrusion {
+						crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+						spine [0 0 0,0 4 0,-0.7 7 0.7]
+						scale [0.12 0.12,0.12 0.12]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+				}]
+		}
+		Transform {
+			translation	0 29.8 0
+			children [Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Extrusion {
+						crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+						spine [0 0 0,0 -5.5 12]
+						scale [0.05 0.05,0.05 0.05]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+				}]
+		}
+		Transform {
+			translation	0 29.8 0
+			children [Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Extrusion {
+						crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+						spine [0 0 0,0 -5 -5]
+						scale [0.05 0.05,0.05 0.05]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+				}]
+		}
+		Transform {
+			translation	-1.5 24.8 -1
+			scale 0.5 0.75 0.5
+			rotation 0 1 0 3.14
+			children [Inline {url "hop.wrl"}]
+		}
+
+	]
+}
+
+
+DEF	timer TimeSensor {
+	cycleInterval 20
+	loop TRUE
+	enabled TRUE
+	
+}
+DEF	quay1 OrientationInterpolator {
+	key [0 0.5 0.6 0.7  1]
+	keyValue [0 1 0 1.65 , 0 1 0 1.65 , 0 1 0 1.65 , 0 1 0 1.65 , 0 1 0 0 ]
+}
+
+ROUTE timer.fraction_changed TO	quay1.set_fraction 
+
+ROUTE quay1.value_changed TO trucquay.rotation
+#bao xi mang
+DEF	bxm Transform {
+
+	translation	15 0 -1
+	children [
+	Inline {url ["../kho xi măng/mot-it-ximang.wrl"]}	 
+	]
+}
+DEF	timer1 TimeSensor {
+	cycleInterval 20
+	loop TRUE
+	enabled TRUE
+}
+DEF	dcxi PositionInterpolator {
+	key	[0  0.5 0.7  1]
+	keyValue [15 0 -1 , 15 0 -1 , 15 35 -1 , 1 35 15 ]
+}
+ROUTE timer1.fraction_changed TO dcxi.set_fraction
+ROUTE dcxi.value_changed TO	bxm.translation
+
+#dc dây
+DEF	day Transform {
+		translation	15 22 -1
+	center 0 20 0
+	children [Shape {
+		geometry Cylinder {
+			height 40
+			radius 0.05
+
+		}
+		appearance Appearance {
+			texture	ImageTexture {
+				url	["../thep.jpg"]
+			}
+		}
+	}]
+}
+DEF	timer2 TimeSensor {
+	cycleInterval 20
+	loop TRUE
+	enabled TRUE
+}
+
+DEF	dcday PositionInterpolator {
+	key	[0  0.5 0.7  1 ]
+	keyValue [1 1 1, 1 1 1 , 1 0.15 1 , 1 0.15 1 ]
+}
+DEF	dclenday PositionInterpolator {
+	key	[0  0.5 0.7  1]
+	keyValue [15 21 -1 , 15 21 -1 , 15 21 -1 , 1 21 15 ]
+}
+ROUTE timer2.fraction_changed TO dcday.set_fraction
+ROUTE timer2.fraction_changed TO dclenday.set_fraction
+ROUTE dcday.value_changed TO day.set_scale
+ROUTE dclenday.value_changed TO	day.translation
+

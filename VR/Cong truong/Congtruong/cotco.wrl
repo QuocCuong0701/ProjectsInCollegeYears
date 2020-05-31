@@ -1,0 +1,25 @@
+#VRML V2.0 utf8
+
+Transform {children [
+		Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "betong.jpg"}}
+			geometry Cylinder {radius 0.5 height 1}
+		}]
+}
+Transform {
+	translation	0 7.5 0
+	children [
+
+		Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "thep.jpg"}}
+			geometry Cylinder {radius 0.1 height 15}
+		}]
+}
+Transform {
+	translation	2 14 0
+	children [
+		Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "co.png"}}
+			geometry Box {size 4 2 0.05}
+		}]
+}

@@ -1,0 +1,31 @@
+#VRML V2.0 utf8
+
+DEF	xetai Transform {
+	children [Inline {url "xetai.wrl"}]
+}
+
+DEF	timer TimeSensor {
+	cycleInterval 10
+	loop TRUE
+	enabled TRUE
+}		
+				
+
+
+
+DEF qddc PositionInterpolator {
+	key [0 0.4 0.5 0.7 0.8 1]
+	keyValue [30 0 0, 0 0 0,0 0 0,30 0 0,30 0 15, 30 0 25]
+}
+ROUTE timer.fraction_changed TO qddc.set_fraction	
+ROUTE qddc.value_changed TO xetai.set_translation 
+
+DEF xoay  OrientationInterpolator {
+	key [0 0.4 0.6 0.7 0.8 1]
+	keyValue [ 0 1 0 0,0 1 0 0,0 1 0 0, 0 1 0 -1.57,0 1 0 -1.57, 0 1 0 -1.57 ]
+}
+ROUTE timer.fraction_changed TO xoay.set_fraction	
+ROUTE xoay.value_changed TO xetai.set_rotation 
+
+
+

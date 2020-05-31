@@ -1,0 +1,83 @@
+#VRML V2.0 utf8
+
+DEF	xetron Transform {
+	children [Inline {url "xetai.wrl"}]
+}
+DEF click TouchSensor {enabled TRUE }
+DEF	timer TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		
+		}
+DEF	timer1 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+			
+		}
+DEF	tien PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 0,15 0 0,30 0 0]
+			}
+DEF	lui PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [30 0 0,15 0 0,0 0 0]
+			}
+DEF ma Script {
+
+		eventIn SFBool turnOn
+
+		eventOut SFBool On
+
+		eventOut SFBool Off
+
+		field SFBool turn FALSE
+
+		url "javascript:
+
+		function turnOn(val){
+
+		if(val){
+
+		turn = !turn;
+
+		if(turn)
+
+				{
+
+					On= TRUE;
+
+                     Off=FALSE;
+
+            		}
+
+        		else
+
+        		{
+
+                    On=FALSE;
+
+					Off=TRUE;
+
+        		}
+
+            		}
+
+    		}
+
+    		"
+
+}
+
+
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.On	TO timer.enabled
+ROUTE ma.Off TO timer1.enabled
+ROUTE click.touchTime TO timer.startTime
+ROUTE click.touchTime TO timer1.startTime
+ROUTE timer.fraction_changed TO	tien.set_fraction
+ROUTE timer1.fraction_changed TO lui.set_fraction
+ROUTE tien.value_changed TO xetron.translation
+ROUTE lui.value_changed TO xetron.translation

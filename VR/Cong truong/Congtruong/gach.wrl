@@ -1,0 +1,151 @@
+#VRML V2.0 utf8
+DEF	khoi Transform {
+	children [
+		DEF	day Transform {
+			children [
+				DEF	gach Transform {
+					children [Shape {appearance Appearance {material Material {}
+								texture ImageTexture {url "gach.jpg"}}
+							geometry Box {size 1.5 0.5 0.5}
+						}]
+				}
+				Transform {
+					translation	1.55 0 0
+					children [USE gach ]
+				}
+				Transform {
+					translation	1.55 0 0.55
+					children [USE gach ]
+				}
+				Transform {
+					translation	1.55 0 -0.55
+					children [USE gach ]
+				}
+				Transform {
+					translation	0 0 0.55
+					children [USE gach ]
+				}
+				Transform {
+					translation	0 0 -0.55
+					children [USE gach ]
+				}
+				Transform {
+					translation	0 0 1.1
+					children [USE gach ]
+				}
+				Transform {
+					translation	0 0 -1.1
+					children [USE gach ]
+				}
+				Transform {
+					translation	1.55 0 1.1
+					children [USE gach ]
+				}
+				Transform {
+					translation	1.55 0 -1.1
+					children [USE gach ]
+				}
+				Transform {
+					translation	1.55 0 1.65
+					children [USE gach ]
+				}
+				Transform {
+					translation	0 0 1.65
+					children [USE gach ]
+				}
+			]
+		}
+		Transform {
+			translation	0.5 0.55 1
+			rotation 0 1 0 1.57
+			children [USE day ]
+		}
+		Transform {
+			translation	0 1.1 0
+			children [USE day ]
+		}
+		Transform {
+			translation	0.5 1.65 1
+			rotation 0 1 0 1.57
+			children [USE day ]
+		}
+		Transform {
+			translation	0 2.2 0
+			children [USE day ]
+		}
+		Transform {
+			translation	0.5 2.75 1
+			rotation 0 1 0 1.57
+			children [USE day ]
+		}
+		Transform {
+			translation	0 3.3 0
+			children [USE day ]
+		}
+		Transform {
+			translation	0.5 3.85 1
+			rotation 0 1 0 1.57
+			children [USE day ]
+		}
+		Transform {
+			translation	0 4.4 0
+			children [USE day ]
+		}
+		Transform {
+			translation	0.5 4.95 1
+			rotation 0 1 0 1.57
+			children [USE day ]
+		}
+		Transform {
+			translation	0 5.5 0
+			children [USE day ]
+		}
+	]
+}
+DEF	lo Transform  {
+	children [
+		Transform {
+			translation 0 0 0
+			children [USE khoi ]
+		}
+		Transform {
+			translation	3.4 0 0
+			children [USE khoi ]
+		}
+		Transform {
+			translation	3.4 0 3.4
+			children [USE khoi ]
+		}
+		Transform {
+			translation	3.4 0 -3.4
+			children [USE khoi ]
+		}
+		Transform {
+			translation	0 0 3.4
+			children [USE khoi ]
+		}
+		Transform {
+			translation	0 0 -3.4
+			children [USE khoi ]
+		}
+	]
+}
+Transform {
+	translation	8 0 0
+	children [USE lo ]
+}
+Transform {
+	translation	8 0 11
+	children [USE lo ]
+}
+Transform {
+	translation	8 0 -11
+	children [USE lo ]
+}
+Transform {
+	translation	0 0 -11
+	children [USE lo ]
+}Transform {
+	translation	0 0 11
+	children [USE lo ]
+}

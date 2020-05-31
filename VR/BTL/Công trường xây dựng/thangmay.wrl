@@ -1,0 +1,93 @@
+#VRML V2.0 utf8
+
+
+
+Transform {
+	children [
+	DEF ray	Transform {
+			translation	-2 0 0
+			children [Inline {url "hang.wrl"}]}
+	DEF	thangmay Transform {
+			translation	0 0 4.2
+			children [Inline {url "cabin.wrl"}]
+			}
+	]
+}
+DEF click TouchSensor {enabled TRUE }
+DEF	timer TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		
+		}
+DEF	timer1 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+			
+		}
+DEF	len PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 0,0 10 0,0 17 0 ]
+			}
+DEF	xuong PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 17 0,0 10 0,0 0 0]
+			}
+DEF ma Script {
+
+		eventIn SFBool turnOn
+
+		eventOut SFBool On
+
+		eventOut SFBool Off
+
+		field SFBool turn FALSE
+
+		url "javascript:
+
+		function turnOn(val){
+
+		if(val){
+
+		turn = !turn;
+
+		if(turn)
+
+				{
+
+					On= TRUE;
+
+                     Off=FALSE;
+
+            		}
+
+        		else
+
+        		{
+
+                    On=FALSE;
+
+					Off=TRUE;
+
+        		}
+
+            		}
+
+    		}
+
+    		"
+
+}
+
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.On	TO timer.enabled
+ROUTE ma.Off TO timer1.enabled
+ROUTE click.touchTime TO timer.startTime
+ROUTE click.touchTime TO timer1.startTime
+ROUTE timer.fraction_changed TO	len.set_fraction
+ROUTE timer1.fraction_changed TO xuong.set_fraction
+ROUTE len.value_changed TO thangmay.translation
+ROUTE xuong.value_changed TO thangmay.translation
+

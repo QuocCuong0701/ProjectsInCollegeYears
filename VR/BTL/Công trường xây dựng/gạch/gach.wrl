@@ -1,0 +1,106 @@
+#VRML V2.0 utf8
+
+Collision {
+	children [
+		DEF	hanggach Transform {
+			children [
+				DEF	cotgach Transform {
+					children [
+						DEF	gach Transform {
+							children [Shape {appearance Appearance {material Material {}
+										texture ImageTexture {url "gach.jpg"}}
+									geometry Box {size 1.1 0.4 0.6}
+								}]
+						}
+						Transform {	 translation 0 0.43 0
+							children [USE gach ]
+						}
+						Transform { translation	0 0.86 0
+							children [USE gach ]
+						}
+						Transform { translation	0 1.29 0
+							children [USE gach ]
+						}
+						Transform { translation	0 1.72 0
+							children [USE gach ]
+						}
+						Transform { translation	0 2.15 0
+							children [USE gach ]
+						}
+						Transform { translation	0 2.58 0
+							children [USE gach ]
+						}
+						Transform { translation	0 -2.15 0
+							children [USE gach ]
+						}
+						Transform { translation	0 -1.72 0
+							children [USE gach ]
+						}
+						Transform { translation	0 -1.29 0
+							children [USE gach ]
+						}
+						Transform { translation	0 -0.86 0
+							children [USE gach ]
+						}
+						Transform { translation	0 -0.43 0
+							children [USE gach ]
+						}
+					]
+				}
+				Transform {	  translation	1.13 0 0
+					children [USE cotgach ]
+				}
+				Transform {	  translation	2.26 0 0
+					children [USE cotgach ]
+				}
+				Transform {	  translation	-1.13 0 0
+					children [USE cotgach ]
+				}
+			]
+		}
+
+
+		DEF	khoigach Transform {
+			children [ 
+				Transform{translation	0 0 0.63
+					children [USE hanggach]}
+				Transform{translation	0 0 1.26
+					children [USE hanggach]}
+				Transform{translation	0 0 1.89
+					children [USE hanggach]}
+				Transform{translation	0 0 2.52
+					children [USE hanggach]}
+				Transform{translation	0 0 3.15
+					children [USE hanggach]}
+				Transform{translation	0 0 0
+					children [USE hanggach]}
+			]
+		}
+
+		DEF	daygach Transform {
+			children [
+				Transform {	translation 0 0 0
+					children [USE khoigach ]}
+				Transform {	translation 0 0 -3.9
+					children [USE khoigach ]}
+				Transform {	translation 0 0 -7.8
+					children [USE khoigach ]}
+			]
+		}
+
+		DEF	logach Transform {
+			children [
+				Transform {	translation 4.6 0 0
+					children [USE daygach ]}
+				Transform {	translation 9.2 0 0
+					children [USE daygach ]}
+				Transform {	translation 13.8 0 0
+					children [USE daygach ]}
+				Transform {	translation -4.6 0 0
+					children [USE daygach ]}
+			]
+		}
+	]
+	bboxSize 18 4 8
+	collide	TRUE
+}

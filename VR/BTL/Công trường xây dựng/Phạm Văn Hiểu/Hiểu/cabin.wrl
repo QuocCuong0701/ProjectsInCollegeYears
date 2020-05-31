@@ -1,0 +1,148 @@
+#VRML V2.0 utf8
+
+
+
+Transform {
+
+	 children [
+		 DEF thangmay Transform{
+			 translation 0 0 0
+			 children [
+			DEF manh Transform {
+				translation	0 0 0
+				children [Shape {appearance Appearance {
+					texture ImageTexture {url "cua.jpg"}}
+				geometry Box {size 4 4 0.1}
+					}
+				]
+			}
+			Transform {
+			translation -2 0 -2
+			rotation 0 1 0 -1.57
+			children [Shape {appearance Appearance {
+				texture ImageTexture {url "tamthep.jpg"}}
+				geometry Box {size 4 4 0.1}
+					} ]}
+			Transform {
+			translation 2 0 -2
+			rotation 0 1 0 -1.57
+			children [Shape {appearance Appearance {
+			texture ImageTexture {url "tamthep.jpg"}}
+				geometry Box {size 4 4 0.1}
+					} ]}
+			Transform {
+			translation 0 -2 -2
+			rotation 1 0 0 -1.57
+			children [Shape {appearance Appearance {
+			texture ImageTexture {url "tamthep.jpg"}}
+				geometry Box {size 4 4 0.1}
+					} ]}
+			Transform {
+			translation 0 2 -2
+			rotation 1 0 0 -1.57
+			children [Shape {appearance Appearance {
+			texture ImageTexture {url "tamthep.jpg"}}
+				geometry Box {size 4 4 0.1}
+					} ]}
+			Transform {
+			translation 0 0 -4
+			scale 1 1 1
+			rotation 0 0 1 -1.57
+			children [Shape {appearance Appearance {
+			texture ImageTexture {url "tamthep.jpg"}}
+				geometry Box {size 4 4 0.1}
+					}]}
+			Transform{
+				translation	0 -0.9 -2
+				scale 0.3 0.3 0.3
+				rotation 0 1 0 1.57
+				children [Inline {url "nguoi.wrl"}]
+				} 
+			]	}
+	]
+}
+DEF	dc PlaneSensor {
+			enabled	TRUE
+			maxPosition	4 0
+			minPosition	0 0
+		}
+DEF click TouchSensor {enabled TRUE }
+DEF	timer TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		
+		}
+DEF	timer1 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+			
+		}
+DEF	len PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 0,0 20 0,0 40 0 ]
+			}
+DEF	xuong PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 40 0,0 20 0,0 0 0]
+			}
+DEF ma Script {
+
+		eventIn SFBool turnOn
+
+		eventOut SFBool On
+
+		eventOut SFBool Off
+
+		field SFBool turn FALSE
+
+		url "javascript:
+
+		function turnOn(val){
+
+		if(val){
+
+		turn = !turn;
+
+		if(turn)
+
+				{
+
+					On= TRUE;
+
+                     Off=FALSE;
+
+            		}
+
+        		else
+
+        		{
+
+                    On=FALSE;
+
+					Off=TRUE;
+
+        		}
+
+            		}
+
+    		}
+
+    		"
+
+}
+
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.On	TO timer.enabled
+ROUTE ma.Off TO timer1.enabled
+ROUTE click.touchTime TO timer.startTime
+ROUTE click.touchTime TO timer1.startTime
+ROUTE timer.fraction_changed TO	len.set_fraction
+ROUTE timer1.fraction_changed TO xuong.set_fraction
+ROUTE len.value_changed TO thangmay.translation
+ROUTE xuong.value_changed TO thangmay.translation
+
+
+ROUTE dc.translation_changed TO	manh.translation

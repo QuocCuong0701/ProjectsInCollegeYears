@@ -1,0 +1,125 @@
+#VRML V2.0 utf8
+
+DEF	mayui Transform {
+	children [Inline {url "mayui.wrl"}]
+}
+DEF click TouchSensor {enabled TRUE }
+DEF	timer TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+			startTime 1
+		
+		}
+DEF	timer1 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		
+		}
+DEF	timer2 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+			startTime	3
+		
+		}
+DEF	timer3 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		
+		}
+DEF	tien PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [0 0 0,-48 0 0,-48 0 30]
+			}
+DEF	quay2 OrientationInterpolator {
+	key	[0.4 0.45 0.5]
+	keyValue [0 1 0 0,0 1 0 0.785, 0 1 0 1.57]
+			}
+DEF	quay1 OrientationInterpolator {
+	key	[0.35 0.4 0.5]
+	keyValue [0 1 0 1.57,0 1 0 2.355, 0 1 0 3.14]
+			}
+DEF	lui PositionInterpolator {
+				key [0 0.5 1]
+				keyValue [-48 0 30,-48 0 0 ,0 0 0]
+			}
+DEF ma Script {
+
+		eventIn SFBool turnOn
+
+		eventOut SFBool On
+
+		eventOut SFBool	On1
+
+		eventOut SFBool	On2
+
+		eventOut SFBool Off
+
+		field SFBool turn FALSE
+
+		url "javascript:
+
+		function turnOn(val){
+
+		if(val){
+
+		turn = !turn;
+
+		if(turn)
+
+				{
+
+					On= TRUE;
+
+					On1=FALSE;
+
+					On2=TRUE;
+
+                     Off=FALSE;
+
+            		}
+
+        		else
+
+        		{
+
+                    On=FALSE;
+
+					On1=TRUE;
+
+					On2=FALSE;
+
+					Off=TRUE;
+
+        		}
+
+            		}
+
+    		}
+
+    		"
+
+}
+
+
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.On	TO timer.enabled
+ROUTE ma.Off TO timer1.enabled
+ROUTE ma.On1 TO timer2.enabled
+ROUTE ma.On2 TO timer3.enabled
+ROUTE click.touchTime TO timer.startTime
+ROUTE click.touchTime TO timer1.startTime
+ROUTE click.touchTime TO timer2.startTime 
+ROUTE click.touchTime TO timer3.startTime
+ROUTE timer.fraction_changed TO	tien.set_fraction
+ROUTE timer1.fraction_changed TO lui.set_fraction
+ROUTE timer2.fraction_changed TO quay1.set_fraction
+ROUTE timer3.fraction_changed TO quay2.set_fraction
+ROUTE tien.value_changed TO mayui.translation
+ROUTE quay1.value_changed TO mayui.rotation
+ROUTE lui.value_changed TO mayui.translation
+ROUTE quay2.value_changed TO mayui.rotation

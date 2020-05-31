@@ -1,0 +1,16 @@
+#VRML V2.0 utf8
+
+DEF	cuaso Transform	{
+	children [
+		Shape {appearance Appearance {material Material {}
+		texture ImageTexture {url "mai1.jpg"}}
+			geometry Box {size 2 3 0.1}
+		}]
+}
+DEF	mocua PlaneSensor {
+enabled TRUE 
+maxPosition	2 0
+minPosition	0 0
+
+}
+ROUTE mocua.translation_changed TO	cuaso.translation

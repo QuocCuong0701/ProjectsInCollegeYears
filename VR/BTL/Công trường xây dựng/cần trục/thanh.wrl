@@ -1,0 +1,37 @@
+#VRML V2.0 utf8
+
+DEF thanh Transform{
+	children [
+		Shape {appearance Appearance {material Material {diffuseColor 1 0 0}}
+			geometry Box {size 0.2 4 0.2}}
+	]
+}
+Transform {
+	translation	4 0 0
+	children [ USE thanh
+	]
+}
+Transform {
+translation 2 0 0
+rotation 0 0 1 0.785
+scale 1 1.38 1
+children [USE thanh ]
+}	 
+Transform {
+translation 2 0 0
+rotation 0 0 1 2.355
+scale 1 1.38 1
+children [USE thanh ]
+}	 
+DEF thanh1 Transform {
+	translation	2 -1.9 0
+	children [
+		Shape {appearance Appearance {material Material	{diffuseColor 1 0 0}}
+			geometry Box {size 4 0.2 0.2}
+		}
+		]
+	}
+	Transform {
+		translation	0 3.8 0
+		children [USE thanh1 ]
+	}

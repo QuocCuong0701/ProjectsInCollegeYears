@@ -1,0 +1,77 @@
+#VRML V2.0 utf8
+
+#Sun
+Transform {
+	translation	0 0 0
+	children [
+		Shape {
+			appearance Appearance {
+				texture	ImageTexture {url "./solar system/sun1.jpg"}
+			}
+			geometry Sphere	{ radius 4 }
+		}
+	]
+}
+
+#Earth
+Group {
+	children [
+		DEF	timer TimeSensor {
+			cycleInterval 10 
+			loop TRUE
+			stopTime 0
+		}
+		DEF	earth Transform {
+			translation	8 0 0
+			rotation 0 0 1 0
+			children [
+				Shape {
+					appearance Appearance {
+						texture	ImageTexture {url "./solar system/earth.jpg"}
+					}
+					geometry Sphere	{radius 1}
+				}
+			]
+		}
+		DEF pi PositionInterpolator { #chuyen dong thang
+			key [ 0 1 ]
+			keyValue [-10 1 3, 10 1 0]
+		}
+		DEF	rotary-motion OrientationInterpolator {	#chuyen dong quay
+			key	[0 0.5 1]
+			keyValue [0 1 0 0,
+					  0 1 0 3.14, # rotate right
+					  0 1 0 6.28 ]
+		}
+		DEF Program Script {
+
+		  field SFFloat x 0.0
+		  field SFFloat y 0.0
+		  field SFFloat z 0.0
+
+		  url "javascript:
+    		function set_fraction(fraction, eventTime)
+    		{	
+    		  x = 15 * Math.cos(fraction * -6.2831853);
+    		  y = 0.0;
+    		  z = 15 * Math.sin(fraction * -6.2831853);
+
+    		  value_changed[0] = x;
+    		  value_changed[1] = y;
+    		  value_changed[2] = z;	  
+    		} 
+    		"
+
+		  eventIn  SFFloat set_fraction	  
+		  eventOut SFVec3f value_changed
+		}
+	]
+#	ROUTE timer.fraction_changed TO	pi.set_fraction
+#	ROUTE pi.value_changed  TO earth.translation
+
+	ROUTE timer.fraction_changed TO	rotary-motion.set_fraction
+	ROUTE rotary-motion.value_changed TO earth.rotation
+
+	ROUTE timer.fraction_changed TO Program.set_fraction
+	ROUTE Program.value_changed TO earth.set_translation
+}

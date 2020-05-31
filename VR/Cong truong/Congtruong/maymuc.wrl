@@ -1,0 +1,105 @@
+#VRML V2.0 utf8
+
+Transform {
+	children [
+		Transform {
+			children [
+				Shape {appearance Appearance {material Material {diffuseColor 1 1 0}}
+					geometry Box {size 8 3 6}
+				}]
+		}
+		Transform {
+			translation	-2.2 -1.5 3.5
+			rotation 1 0 0 1.57
+			scale 0.7 1	0.7
+			children [Inline {url "banhxich.wrl"}]
+		}
+		Transform {
+			translation	-2.2 -1.5 -3.5
+			rotation 1 0 0 1.57
+			scale 0.7 1 0.7
+			children [Inline {url "banhxich.wrl"}]
+		}
+		DEF	be Transform {
+			children [Inline {url "canmuc.wrl"}]
+		}
+	]
+}
+DEF click TouchSensor {enabled TRUE }
+DEF	timer TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+		
+		}
+DEF	timer1 TimeSensor {
+			cycleInterval 5
+			loop FALSE
+			enabled FALSE
+			
+		}
+DEF	quay1 OrientationInterpolator {
+				key [0 0.5 1]
+				keyValue [0 1 0 0,0 1 0 3.14,0 1 0 6.28]
+			}
+DEF	quay2 OrientationInterpolator {
+				key [0 0.5 1]
+				keyValue [ 0 1 0 0,0 1 0 -3.14,0 1 0 -6.28]
+			}
+DEF ma Script {
+
+		eventIn SFBool turnOn
+
+		eventOut SFBool On
+
+		eventOut SFBool Off
+
+		field SFBool turn FALSE
+
+		url "javascript:
+
+		function turnOn(val){
+
+		if(val){
+
+		turn = !turn;
+
+		if(turn)
+
+				{
+
+					On= TRUE;
+
+                     Off=FALSE;
+
+            		}
+
+        		else
+
+        		{
+
+                    On=FALSE;
+
+					Off=TRUE;
+
+        		}
+
+            		}
+
+    		}
+
+    		"
+
+}
+
+
+
+ROUTE click.isActive TO	ma.turnOn
+ROUTE ma.On	TO timer.enabled
+ROUTE ma.Off TO timer1.enabled
+ROUTE click.touchTime TO timer.startTime
+ROUTE click.touchTime TO timer1.startTime
+ROUTE timer.fraction_changed TO	quay1.set_fraction
+ROUTE timer1.fraction_changed TO quay2.set_fraction
+ROUTE quay1.value_changed TO be.rotation
+ROUTE quay2.value_changed TO be.rotation

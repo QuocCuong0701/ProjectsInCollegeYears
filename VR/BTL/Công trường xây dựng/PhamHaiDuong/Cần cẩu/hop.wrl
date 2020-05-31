@@ -1,0 +1,82 @@
+#VRML V2.0 utf8
+
+Transform {
+	children [
+		Transform {
+			translation	0 0 0
+			children [Shape {appearance Appearance {material Material {}
+				texture ImageTexture {url "tamthep.jpg"}}
+			geometry Box {size 4 4 0.1}
+				}
+			]
+		}
+		Transform {
+		translation -2 0 -2
+		rotation   0  1 0 -1.57
+		children [Shape {appearance Appearance {material Material {
+			diffuseColor  0.5 0.7 0.8 transparency 0.5 }
+								}	
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 0 -2 -2
+		rotation 1 0 0 -1.57
+		children [Shape {appearance Appearance {material Material {}
+			texture ImageTexture {url "tamthep.jpg"}}
+								
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 0 2 -2
+		rotation 1 0 0 -1.57
+		children [Shape {appearance Appearance {material Material {}
+							texture ImageTexture {url "tamthep.jpg"}}
+			geometry Box {size 4 4 0.1}
+				} ]}
+		Transform {
+		translation 0 0 -4
+		scale 1 1 1
+		rotation 0 0 1 -1.57
+		children [Shape {appearance Appearance {material Material {
+			diffuseColor  0.5 0.7 0.8 transparency 0.5	 }
+								}
+			geometry Box {size 4 4 0.1}
+				}]}
+		#vẽ cửa
+DEF	cua	Transform {
+					rotation	   0 1 0 -1.57 
+					translation		  2.2 0 -3.6
+					scale 8 8 8
+					children [
+					Shape {
+						geometry Extrusion {
+								ccw	FALSE	
+								spine	[0 0 0, 0 0 -0.01]			
+	                         crossSection [
+                           -0.01 0.2525,
+                           -0.126 0.006,
+                           -0.328 0.004,
+                           -0.336 -0.2485,
+                           0.151 -0.2465,
+                           0.155 0.2505,
+                           -0.018 0.2545,
+                           -0.01 0.2525,
+                         ]				
+						 
+						}
+						appearance  Appearance {
+							texture	ImageTexture {url "tamthep.jpg"}
+						}
+					}
+					]	  center -0.3 0 0
+				}
+
+				 ]
+}
+
+DEF	openDoor CylinderSensor	{
+	maxAngle  0
+	minAngle -1.57
+}
+ROUTE openDoor.rotation_changed	TO cua.rotation
+

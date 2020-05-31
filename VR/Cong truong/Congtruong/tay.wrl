@@ -1,0 +1,44 @@
+#VRML V2.0 utf8
+
+DEF	tay Transform {
+			children [
+Transform {
+	translation	 2.5 -1.25 1
+	scale 2 0.7 1
+	children [Shape {appearance Appearance {material Material {}
+	texture	ImageTexture {url "da.jpg"}}
+		geometry Sphere {radius 0.2 
+		 }
+	}
+	]
+}
+Transform {
+	children [Shape {appearance Appearance {material Material {} 
+	texture ImageTexture {url "lam.jpg"}}
+						geometry Extrusion {
+							crossSection [1 0, 0.9 0.4, 0.4 0.9, 0 1, -0.4 0.9, -0.9 0.4
+							-1 0, -0.9 -0.4, -0.4 -0.9, 0 -1 , 0.4 -0.9, 0.9 -0.4, 1 0]
+											spine [0 0 0,0 0 1,0.5 -0.25 1,1 -0.5 1,1.5 -0.75 1,2.5 -1.25 1]
+											scale [0.2 0.2,0.3 0.3,0.3 0.3,0.2 0.2,0.22 0.22,0.12 0.12]
+											beginCap TRUE
+											endCap TRUE
+											solid FALSE
+						}
+					}]
+				}
+			]
+		}
+DEF	click TouchSensor {enabled  TRUE }
+DEF	clock TimeSensor {
+	cycleInterval 5
+	loop TRUE
+	enabled	TRUE
+}
+DEF	quay OrientationInterpolator {
+	key	[0 0.5 1]
+	keyValue [0 0 1 -0.5,0 0 1 0,0 0 1 0.4]
+}
+
+ROUTE click.isActive TO	clock.enabled
+ROUTE clock.fraction_changed TO quay.set_fraction
+ROUTE quay.value_changed TO	tay.rotation

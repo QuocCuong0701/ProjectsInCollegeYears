@@ -1,0 +1,370 @@
+#VRML V2.0 utf8
+
+Background {
+	skyAngle [ 0.1, 0.1, 0.2, 1.4, 1.7 ]	
+	skyColor [ 1 0 0, .9 .9 .5, .7 .7 .9, 0 0.4 1, 0 0.7 1,0.1 0.6 0 ]		
+}
+NavigationInfo {
+	avatarSize [1 1.8 2.3]
+}
+#Cong vao
+Transform {
+	translation	0 -4 10
+	children [Shape {appearance Appearance {material Material {diffuseColor 0 1 0}}
+			geometry Box {size 20 4 0.1}
+		}]
+}
+Transform {	  translation	-7 -4.3 10.2
+	children [
+		Shape {appearance Appearance {material DEF TEXT Material {diffuseColor 1 0 0
+					ambientIntensity 1.0
+					specularColor 0 0 0
+					shininess 0.145
+					transparency 0}}
+			geometry Text {string "CÔNG TRƯỜNG XÂY DỰNG"
+				fontStyle FontStyle {size 1.35 family ".VN-avo"style "BOLD"}
+			}
+		}
+	]
+}
+Transform {
+	translation	-10 -8.8 10
+	children [Shape {appearance Appearance {material Material {}
+				texture ImageTexture {url "thep.jpg"}}
+			geometry Cylinder {radius 0.1
+				height 14}
+		}]
+}
+Transform {
+	translation	10 -8.8 10
+	children [Shape {appearance Appearance {material Material {}
+				texture ImageTexture {url "thep.jpg"}}
+			geometry Cylinder {radius 0.1
+				height 14}
+		}]
+}
+#End Cong Vao
+#Tuong bao, Nen
+Transform {
+	translation	35 -12.6 10
+	children [
+		Shape {	 appearance	Appearance {material Material {}
+				texture ImageTexture {url "tuongbao.jpg"}}
+			geometry Box { size 50 6 0.2 }
+		}
+	]
+}
+Transform {
+	translation	-35 -12.6 10
+	children [
+		Shape {	 appearance	Appearance {material Material {}
+				texture ImageTexture {url "tuongbao.jpg"}}
+			geometry Box { size 50 6 0.2 }
+		}
+	]
+}
+Transform {
+	translation	60 -12.6 -50
+	children [
+		Shape {	 appearance	Appearance {material Material {}
+				texture ImageTexture {url "tuongbao.jpg"}}
+			geometry Box { size 0.2 6 120 }
+		}
+	]
+}
+Transform {
+	translation	-60 -12.6 -50
+	children [
+		Shape {	 appearance	Appearance {material Material {}
+				texture ImageTexture {url "tuongbao.jpg"}}
+			geometry Box { size 0.2 6 120 }
+		}
+	]
+}
+Transform {
+	translation	0 -12.6 -110
+	children [
+		Shape {	 appearance	Appearance {material Material {}
+				texture ImageTexture {url "tuongbao.jpg"}}
+			geometry Box { size 120 6 0.2 }
+		}
+	]
+}
+Transform {
+	translation	0 -15.5 -50
+	children [
+		PointLight {
+			location 0 0 0
+			radius 100
+			ambientIntensity 1.0
+		}
+		Shape {appearance Appearance {material Material {}
+				texture ImageTexture {url "be_tong.jpg"}}
+			geometry Box {size 120 0.2 120}
+		}
+	]
+}
+#End Tuong bao, Nen
+#View
+DEF Cam1 Viewpoint {
+	position 0 -10 40
+	orientation 0 1 0 0
+	fieldOfView 1.5
+	description "Phía trước"
+	jump TRUE
+}
+DEF Cam2 Viewpoint {
+	position 85 -7 -50
+	orientation 0 1 0 1.57
+	fieldOfView 1.5
+	description "Bên phải"
+	jump TRUE
+}
+DEF Cam3 Viewpoint {
+	position 0 0 -140
+	orientation 0 1 0 3.14
+	fieldOfView 1.5
+	description "Phía sau"
+	jump TRUE
+}
+DEF Cam4 Viewpoint {
+	position -85 -7 -50
+	orientation 0 1 0 -1.57
+	fieldOfView 1.5
+	description "Bên trái"
+	jump TRUE
+}
+DEF Cam5 Viewpoint {
+	position 0 69 -50
+	orientation 1 0 0 -1.57
+	fieldOfView 1.5
+	description "Trên xuống"
+	jump TRUE
+} 
+#End View
+
+#Bên trong
+Transform {	   #Tòa nhà
+	children [
+		Transform {translation -3 21.1 -50
+			scale 0.7 1.2 0.7
+			children [Inline {url ["toanha.wrl"]}]
+		}
+	]
+}
+Transform {		#Phòng bảo vệ
+	rotation 0 1 0 3.14
+	translation	47 -11 -2
+	scale 3 3 3
+	children [Inline {url ["./phòng bảo vệ/phong_bao_ve.wrl"]}]
+}
+Transform {		#Cột cờ
+	translation	48 -15 -10
+	scale 4 4 4
+	children [Inline {url ["./cột cờ/cot_co.wrl"]}]
+}
+Transform {		#Gạch
+	rotation 0 1 0 1.57
+	translation	53 -12 -84
+	scale 1.5 1.5 1.5
+	children [Inline {url ["./gạch/gach.wrl"]}]
+}
+Transform {		#Ít Gạch
+	rotation 0 1 0 1.57
+	translation	45 -15 -27
+	scale 1 1 1
+	children [Inline {url ["./gạch/it-gach.wrl"]}]
+}
+Transform {		#Sắt
+	rotation 0 1 0 1.57
+	translation	-33 -15.2 -106
+	scale 6.5 6.5 6.5
+	children [Inline {url ["./đống sắt/dong-sat.wrl"]}]
+}
+Transform {		#Cát
+	rotation 0 0 1 0
+	translation	-57.6 -15.2 -9
+	scale .8 1 .8
+	children [Inline {url ["./đống cát/dongcat.wrl"]}]
+}
+Transform {		#Đá
+	rotation 0 0 1 0
+	translation	-57.9 -15.2 -90
+	scale .8 1 .8
+	children [Inline {url ["./đống đá/dongda.wrl"]}]
+}
+Transform {		#Kho xi măng
+	rotation 0 1 0 1.57
+	translation	-54.4 -15 -50
+	scale 2.5 2.5 2.5
+	children [Inline {url ["./kho xi măng/kho_xi_mang.wrl"]}]
+}
+DEF xm Transform {		#Một ít xi măng
+	rotation 0 1 0 1.57
+	translation	-12 -14.5 -73
+	scale 2.5 2.5 2.5
+	children [Inline {url ["./kho xi măng/mot-it-ximang.wrl"]}]
+}
+Transform { translation	20 0.7 25
+	children [USE xm]
+}
+Transform { translation	10 15.9 7
+	scale 0.8 0.8 0.8
+	children [USE xm]
+}
+Transform { translation	10 44.3 5
+	scale 0.7 0.7 0.7
+	children [USE xm]
+}
+Transform {		#Hàng xe rùa   
+	children [	  
+		DEF xerua Transform {	 rotation 0 1 0 1.57
+			translation	7 -14.36 -106 
+			children [Inline {url ["./Xe rua/xerua.wrl"]}]}
+		Transform {translation 0 0 0
+			children [USE xerua ]}
+		Transform {translation 2.5 0 0
+			children [USE xerua ]}
+		Transform {translation 5 0 0
+			children [USE xerua ]}
+		Transform {translation 7.5 0 0
+			children [USE xerua ]}
+		Transform {translation 10 0 0
+			children [USE xerua ]}
+		Transform {translation 12.5 0 0
+			children [USE xerua ]}
+		Transform {translation 15 0 0
+			children [USE xerua ]}
+		Transform {translation 17.5 0 0
+			children [USE xerua ]}
+		Transform {translation 20 0 0
+			children [USE xerua ]}
+		Transform {translation 22.5 0 0
+			children [USE xerua ]}
+	]
+}
+Transform{		#Xe trộn bê tông
+	translation	-35 -14.3 -70
+	rotation 0 1 0 -1.57
+	scale .9 .9 .9
+	children [Inline {url ["./Xe tron be tong/cdmaytron.wrl"]}]
+}
+Transform {		#Cần cẩu
+	rotation 0 1 0 3.14
+	translation	-33 -12.1 -82  
+	children [Inline {url ["./Cần cẩu/cancau.wrl"]}]
+}
+Transform {		#Xe lu			
+	translation	15 -12.3 -85
+	rotation 0 1 0 1.57
+	scale 1 1 1
+	children [Inline {url ["./Xe lu/XeLu.wrl"]}]
+	children [Inline {url ["./Xe lu/cdXeLu.wrl"]}]
+}
+Transform {		#Xe ủi
+	translation	35 -12.3 -25
+	rotation 0 1 0 1.57
+	scale 1 1 1
+	children [Inline {url ["./Xe ui/xeui.wrl"]}]
+}
+Transform {		#Xe tải
+	translation	-30 -14.3 -5
+	rotation 0 1 0 0
+	scale 1 1 1
+	children [Inline {url ["./Xe tai/dcxetai.wrl"]}]
+}
+Transform {		#Cần trục
+	translation	23 -14.5 -45
+	rotation 0 1 0 -1.57
+	scale 1.5 1.5 1.5
+	children [Inline {url ["./cần trục/cantruc.wrl"]}]
+}
+Transform {		#Công nhân chuyển gạch
+	translation	45 -10.7 -33
+	scale 3 3 3
+	children [Inline {url ["./người/cong-nhan.wrl"]}]
+}
+Transform {		#Công nhân chuyển gạch
+	translation	8.5 19.2 -38.5
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan5.wrl"]}]	
+}
+Transform {		#Công nhân chuyển gạch
+	translation	-5.5 7.2 -53.5
+	rotation 0 1 0 -3.14
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan5.wrl"]}]	
+}	 
+Transform {		#Công nhân chuyển xi măng
+	rotation 0 1 0 1.57
+	translation	-21 -10.7 -50
+	scale 3 3 3
+	children [Inline {url ["./người/cong-nhan1.wrl"]}]
+} 
+Transform {		#Bảo vệ
+	translation	-15 -10.8 3
+	rotation 0 1 0 -1.57
+	scale 3 3 3
+	children [Inline {url ["./người/BaoVe.wrl"]}]
+}
+Transform {		#Công nhân bê xi măng
+	rotation 0 1 0 -1.57
+	translation	0 -10.7 -20
+	scale 3 3 3
+	children [Inline {url ["./người/cong-nhan3.wrl"]}]
+}
+Transform {		#Công nhân bê xi măng
+	rotation 0 1 0 3.14
+	translation	-8.8 31.2 -55.5
+	scale 2.4 2.4 2.4
+	children [Inline {url ["./người/cong-nhan3.wrl"]}]
+}
+Transform {		#Công nhân bê xi măng
+	rotation 0 1 0 -1.57
+	translation	-32 -10.7 -23
+	scale 3 3 3
+	children [Inline {url ["./người/cong-nhan4.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 -1.57
+	translation	-8 38.3 -36.1
+	scale 3 3 3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 1.57
+	translation	8.6 38.3 -43.6
+	scale 3 3 3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 1.57
+	translation	2.3 25.3 -43.6
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 1.57
+	translation	8.9 25.3 -51
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 -3.14
+	translation	-10 25.3 -55.5
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 -1.57
+	translation	5.7 13.3 -35.8
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+Transform {		#Công nhân cầm búa
+	rotation 0 1 0 1.57
+	translation	-4.7 13.3 -43.6
+	scale 2.3 2.3 2.3
+	children [Inline {url ["./người/cong-nhan2.wrl"]}]
+}
+#end Bên trong

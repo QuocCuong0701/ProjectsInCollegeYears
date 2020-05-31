@@ -1,0 +1,84 @@
+#VRML V2.0 utf8
+
+#Shape {	  
+#    appearance Appearance{}	   
+#    geometry IndexedFaceSet {
+#        coord Coordinate {	 
+#            point [0 0 0,1 1 0,0 1 0,1 1 0,1 0 0]	  
+#        }			
+#        coordIndex [0 1 2 -1 0 4 1]	  
+#        color Color {				 
+#            color [1 1 1,1 0 0]	
+#        }					   
+#        colorIndex [1 0]	  
+#        colorPerVertex FALSE  
+#		solid FALSE
+#    }					 
+#} 
+
+Group {
+	children [
+		DEF shape Transform {
+			translation	0 0 0
+			children [
+				Shape {
+					appearance Appearance {
+						material DEF mat Material {	diffuseColor 1 0 1 }
+					}
+					geometry IndexedFaceSet	{
+						coord Coordinate {
+							point [
+								-1 0 1,
+								1 0 1,
+								1 0 -1,
+								-1 0 -1,
+								0 3 0
+							]
+						}
+						coordIndex [0 1 2 3 -1,#bottom
+#							0 1 4 -1,#front
+#							1 2 4 -1,#right
+#							2 3 4 -1,#back
+#							3 0 4 #left
+
+						]
+						solid FALSE	
+					}
+				}
+			]
+		}
+	  #keo tha  
+		DEF	drag PlaneSensor {
+			maxPosition 1 1
+			minPosition -1 -1
+		}
+		DEF touch TouchSensor {}
+		DEF	t TimeSensor {
+			cycleInterval 2	
+			loop TRUE
+		}
+		DEF	p OrientationInterpolator {
+			key	[0, .5, 1]							 
+			keyValue [0 1 0 0,0 1 0 3.14,0 1 0 6.28]
+		}
+		#
+		DEF	colorpath ColorInterpolator {
+#			key	[0, 0.5, 0.5, 1]
+#			keyValue [0 1 0, 0 1 0,
+#						0 0 1, 0 0 1,
+#						1 0 1, 1 0 1]
+			key	[0 1 2 3]
+			keyValue [1 0 0, 0 0 1, 0 1 0, 1 1 1]
+		}
+	]
+}
+
+ROUTE t.fraction_changed TO	colorpath.set_fraction
+ROUTE colorpath.value_changed TO mat.diffuseColor
+
+ROUTE drag.translation_changed TO shape.translation
+ROUTE touch.touchTime TO t.startTime
+ROUTE touch.touchTime TO t.stopTime
+
+ROUTE t.fraction_changed TO	p.set_fraction
+ROUTE p.value_changed TO shape.rotation

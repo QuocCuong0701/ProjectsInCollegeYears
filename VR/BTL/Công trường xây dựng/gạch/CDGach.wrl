@@ -1,0 +1,70 @@
+#VRML V2.0 utf8
+
+#VRML V2.0 utf8
+
+
+DEF dongGach Transform {
+			 children [
+				Collision {
+	children [
+		DEF	gach Transform {
+			children [Shape {appearance Appearance {material Material {}
+						texture ImageTexture {url "gach.jpg"}}
+					geometry Box {size 1.1 0.4 0.6}
+				}]
+		}
+		Transform { translation	0.9 0.1 0
+			rotation 0 0 1 -0.3
+			children [USE gach ]
+		}
+		Transform { translation	-0.9 0.1 0.1
+			rotation 0 0 1 0.3
+			children [USE gach ]
+		}
+		Transform { translation	0 0 0.65
+			rotation 0 0 1 -0.2
+			children [USE gach ]
+		}
+		Transform { translation	0.9 0 0.6
+			rotation 0 1 0 1.57
+			children [USE gach ]
+		}
+		Transform { translation	-0.9 0 -0.6
+			rotation 0 0 1 0.3
+			children [USE gach ]
+		}
+		Transform { translation	0.9 0.5 0
+			rotation 0 1 0 0.3
+			children [USE gach ]
+		}
+		Transform { translation	0 0.5 0
+			rotation 0 0 1 1.57
+			children [USE gach ]
+		}
+		Transform { translation	0.7 0.1 -.5
+			rotation 0 0 1 -0.3
+			children [USE gach ]
+		}
+	]
+	bboxSize 2 0.8 1.3
+	collide	TRUE
+}
+			 ]
+}
+
+ 
+
+DEF	 timer TimeSensor {
+	cycleInterval 14
+	loop TRUE
+	startTime 5
+
+}
+
+DEF	cd PositionInterpolator	{
+	key [0 0.5  1]
+	keyValue [0 0 -11, 0 0 0, 0 0 -11]
+}
+
+ROUTE timer.fraction_changed TO	 cd.set_fraction
+ROUTE cd.value_changed TO dongGach.translation

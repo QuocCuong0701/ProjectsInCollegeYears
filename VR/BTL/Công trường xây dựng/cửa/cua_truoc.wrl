@@ -1,0 +1,39 @@
+#VRML V2.0 utf8
+
+Group {
+	children [
+		DEF coll Collision {
+			children [
+				Sound {
+					source DEF ouch AudioClip {
+						url	["../ouch.mp3"]
+					}
+				}
+				Sound {
+					source DEF open AudioClip {
+						url	["open_door.mp3"]
+					}
+				}
+				DEF door Transform {
+					children [
+						Shape {	appearance Appearance {
+								texture	ImageTexture{url ["cua_truoc.jpg"]}
+							}
+							geometry Box {size 2 2.7 0.1}
+						}  
+					]	 center	-1 0 0
+				}
+				DEF	open_door CylinderSensor {
+					maxAngle 0
+					minAngle -1.57
+				} 
+			]
+			bboxSize 1.5 2.8 0.1
+			collide TRUE
+		}
+		
+	]
+}
+ROUTE coll.collideTime TO ouch.startTime
+ROUTE open_door.rotation_changed TO door.rotation
+ROUTE open_door.isActive TO	open.loop

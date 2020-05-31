@@ -1,0 +1,60 @@
+#VRML V2.0 utf8
+
+Group {
+	children [
+		 DEF cua_so Transform {
+			children [
+				DEF gocI Transform {
+					children [
+						Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor 0.5294 0.8078 0.9804
+									transparency 0.6
+									}}
+							geometry Box {size 0.6 0.6 0.06}
+						}
+						Transform {	translation	-0.35 0.029 0
+							children [
+								Shape {appearance DEF app Appearance {
+										material Material {}}
+									geometry	Box	{size 0.1 0.75 0.1}}]
+						}
+						Transform {	   translation 0 0.354 0
+							children [
+								Shape {	appearance USE app
+									geometry Box {size 0.6 0.1 0.1}	}]
+						}
+						Transform {translation 0.3 0.029 0
+							children [
+								Shape {appearance USE app
+									geometry Box {size 0.05 0.75 0.1}}]
+						}
+						Transform {translation 0 -0.32 0
+							children [
+								Shape {appearance USE app
+									geometry Box {size 0.6 0.05 0.1}}]
+						}
+				
+					]
+				}
+				Transform {translation 0.65 0 0
+					  rotation 0 1 0 3.14
+					  children [USE gocI ]
+				}
+				Transform {translation 0 -0.65 0
+					  rotation 0 1 0 0
+					  children [USE gocI ]
+				}
+				Transform {translation .65 -0.65 0
+					  rotation 0 1 0 3.14
+					  children [USE gocI ]
+				}
+			]
+		}
+		DEF	keo PlaneSensor	{
+			maxPosition	1.37 0
+		}
+	]
+}
+ROUTE keo.translation_changed TO cua_so.translation

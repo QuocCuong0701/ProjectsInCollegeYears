@@ -1,0 +1,39 @@
+#VRML V2.0 utf8
+
+DEF xetron Transform {
+	children Inline	{url "maytronbetong.wrl"}
+	center 4.7 3 1.5
+}
+DEF	timer TimeSensor {
+	cycleInterval 10
+	loop TRUE
+	enabled TRUE
+}		
+DEF dongvua Transform {
+	scale 0.2 0 0.5  
+	translation	60 -1.4 -5
+	children Inline	{url "dongvua.wrl"}
+}
+		
+
+
+
+DEF qddc PositionInterpolator {
+	key [0 0.3 0.5 0.7  1]
+	keyValue [0 0 0,0 0 0, 50 0 0,50 0 0, 0 0 0]
+}
+ROUTE timer.fraction_changed TO qddc.set_fraction	
+ROUTE qddc.value_changed TO xetron.set_translation
+DEF xoay  OrientationInterpolator {
+	key [0 0.3 0.5 0.53 0.7 0.97 1]
+	keyValue [ 0 1 0 0, 0 1 0 0 ,0 1 0 0,0 1 0 -3.14, 0 1 0 -3.14,0 1 0 -3.14,0 1 0 0]
+}
+ROUTE timer.fraction_changed TO xoay.set_fraction
+ROUTE xoay.value_changed TO xetron.set_rotation
+
+DEF co  PositionInterpolator {
+	key [0 0.3 0.5 0.69 0.7 0.97 1]
+	keyValue [ 0.2 0 0.5, 0.2 0 0.5, 0.2 0 0.5, 0.2 1 0.5]
+}
+ROUTE timer.fraction_changed TO co.set_fraction	
+ROUTE co.value_changed TO dongvua.set_scale	 
